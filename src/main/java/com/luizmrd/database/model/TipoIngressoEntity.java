@@ -23,7 +23,7 @@ public class TipoIngressoEntity {
     @JoinColumn(name = "evento_id")
     private EventoEntity evento;
 
-    @OneToMany(mappedBy = "tipo_ingresso")
+    @OneToMany(mappedBy = "tipoIngresso")
     private List<InscricaoEntity> inscricoes = new ArrayList<>();
 
 }
