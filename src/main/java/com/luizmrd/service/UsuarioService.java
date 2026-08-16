@@ -18,10 +18,10 @@ public class UsuarioService {
 
     public void criarUsuario(UsuarioRequestDto usuarioRequestDto) throws BadRequestException {
 
-        UsuarioEntity usuario = usuarioRepository.findByCpf(usuarioRequestDto.getEmail())
-                        .orElse(null);
-            if(usuario != null){
-                throw new BadRequestException("Cpf em uso");
+            if(usuarioRepository.findByCpf(usuarioRequestDto.getCpf()).isPresent()){
+                throw new BadRequestException("CPF já está em uso");
+            }if(usuarioRepository.findByEmail(usuarioRequestDto.getEmail()).isPresent()){
+                throw new BadRequestException("E-mail já está em uso");
             }
             usuarioRepository.save(
                     UsuarioEntity.builder()
