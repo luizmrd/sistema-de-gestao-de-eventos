@@ -1,11 +1,10 @@
 package com.luizmrd.controller;
 
 import com.luizmrd.dto.UsuarioRequestDto;
+import com.luizmrd.exception.BadRequestException;
 import com.luizmrd.service.UsuarioService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/usuario")
@@ -18,7 +17,8 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public void criarUsuario(@RequestBody UsuarioRequestDto usuarioRequestDto){
+    @ResponseStatus(HttpStatus.CREATED)
+    public void criarUsuario(@RequestBody UsuarioRequestDto usuarioRequestDto) throws BadRequestException {
         usuarioService.criarUsuario(usuarioRequestDto);
     }
 
