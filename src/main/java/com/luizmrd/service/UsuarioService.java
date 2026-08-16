@@ -4,7 +4,10 @@ import com.luizmrd.database.model.UsuarioEntity;
 import com.luizmrd.database.repository.IUsuarioRepository;
 import com.luizmrd.dto.UsuarioRequestDto;
 import com.luizmrd.exception.BadRequestException;
+import com.luizmrd.exception.ResourceNotFoundExeption;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 public class UsuarioService {
@@ -17,7 +20,6 @@ public class UsuarioService {
 
 
     public void criarUsuario(UsuarioRequestDto usuarioRequestDto) throws BadRequestException {
-
             if(usuarioRepository.findByCpf(usuarioRequestDto.getCpf()).isPresent()){
                 throw new BadRequestException("CPF já está em uso");
             }if(usuarioRepository.findByEmail(usuarioRequestDto.getEmail()).isPresent()){
@@ -32,4 +34,10 @@ public class UsuarioService {
             );
 
     }
+    public UsuarioEntity buscarUsuario(UUID id){
+        return usuarioRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundExeption("Usuario não encontrado"));
+    }
+
 }
