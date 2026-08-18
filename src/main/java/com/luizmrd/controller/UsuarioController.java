@@ -4,6 +4,7 @@ import com.luizmrd.database.model.UsuarioEntity;
 import com.luizmrd.dto.UsuarioRequestDto;
 import com.luizmrd.exception.BadRequestException;
 import com.luizmrd.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class UsuarioController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void criarUsuario(@RequestBody UsuarioRequestDto usuarioRequestDto) throws BadRequestException {
+    public void criarUsuario(@Valid @RequestBody UsuarioRequestDto usuarioRequestDto) throws BadRequestException {
         usuarioService.criarUsuario(usuarioRequestDto);
     }
 

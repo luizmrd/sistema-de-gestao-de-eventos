@@ -1,9 +1,22 @@
 package com.luizmrd.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+
 public class UsuarioRequestDto {
 
+    @NotBlank(message = "O nome é obrigatorio")
     private String nome;
+    @Email(message = "E-mail inválido")
+    @NotBlank(message = "O email é obrigatorio")
     private String email;
+    @NotNull(message = "O CPF é obrigatorio")
+    @Pattern(
+            regexp = "\\d{11}",
+            message = "CPF deve conter 11 números"
+    )
     private String cpf;
 
     public UsuarioRequestDto(String nome, String email, String cpf) {
