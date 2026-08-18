@@ -1,7 +1,5 @@
 package com.luizmrd.dto;
 
-import jakarta.persistence.Column;
-
 public class UsuarioRequestDto {
 
     private String nome;
