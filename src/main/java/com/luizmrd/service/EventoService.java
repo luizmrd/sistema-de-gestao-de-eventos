@@ -56,6 +56,15 @@ public class EventoService {
                 .build();
 
     }
+    public EventoEntity buscarUsuario(UUID id){
+        EventoEntity evento = eventoRepository.findById(id)
+                .orElseThrow(() ->
+                        new BadRequestException("Evento não encontrado!")
+                );
+
+        return evento;
+    }
+
 
 
 
